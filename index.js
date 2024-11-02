@@ -1,6 +1,7 @@
 fetch("data.json")
 	.then(response => response.json())
 	.then(data => {
+		console.log(data)
 		const select1 = document.getElementById("select1")
 		const select2 = document.getElementById("select2")
 		const textarea = document.getElementById("textarea")
@@ -12,7 +13,7 @@ fetch("data.json")
 			select1.appendChild(option)
 		})
 
-		select1.value = data[0].name // set select1 to the first option
+		select1.value = data[0].name
 
 		const selectedItem = data.find(item => item.name === select1.value)
 
@@ -23,11 +24,11 @@ fetch("data.json")
 			select2.appendChild(option)
 		})
 
-		select2.value = selectedItem.resources[0].name // set select2 to the first resource
+		select2.value = selectedItem.resources[0].name
 
 		const selectedResource = selectedItem.resources.find(resource => resource.name === select2.value)
 
-		textarea.value = selectedResource.result // display the result
+		textarea.value = selectedResource.result
 
 		select1.addEventListener("change", () => {
 			const selectedValue = select1.value

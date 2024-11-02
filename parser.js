@@ -47,15 +47,19 @@ select1.addEventListener("change", () => {
 		const selectedId2 = select2.options[select2.selectedIndex].id
 
 		if (selectedName2.trim() !== "") {
-			const existingResource = resources.find(resource => resource.id === selectedId2)
+			const existingResource = products[products.length - 1].resources.find(resource => resource.id === selectedId2)
 			if (!existingResource) {
-				resources.push({
+				const newResource = {
 					id: selectedId2,
 					name: selectedName2,
 					value: selectedValue2,
 					result: document.querySelector(`#${selectedId2.replace("n", "")}`)?.value,
-				})
-				console.log("select2 change", select2.selectedIndex + 1, select2.options[select2.selectedIndex].innerText, select2.options[select2.selectedIndex].id)
+				}
+
+				products[products.length - 1].resources.push(newResource)
+				console.log("Новый ресурс добавлен:", select2.selectedIndex + 1, select2.options[select2.selectedIndex].innerText, select2.options[select2.selectedIndex].id)
+			} else {
+				console.log("Ресурс уже существует:", existingResource)
 			}
 		}
 	})
